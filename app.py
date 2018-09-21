@@ -7,6 +7,16 @@ app = Flask(__name__)
 def home():
     return "This is the home page."
 
+# Added path to view chart.
+@app.route("/chart")
+def chart():
+    return render_template("stockchartexample.html")
+
+# Added path to view info.
+@app.route("/stockinfo")
+def stockinfo():
+    return render_template("stockinfo.html")
+
 # Added Run Option.
 if __name__ == '__main__':
     app.run()
