@@ -17,6 +17,9 @@ def chart():
 def stockinfo():
     return render_template("stockinfo.html")
 
+@app.route("/ticker/<tickervar>")
+def lookupStock(tickervar):
+    return render_template("stockchartexample.html", stocktickername=tickervar)
 # Added Run Option.
 if __name__ == '__main__':
     app.run()

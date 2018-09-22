@@ -29,7 +29,7 @@
       font-size: 40px !important;
       width: auto;
       padding: 5px;
-      height: 100px;
+      height: 75px;
       line-height: 50px;
     }
     .predictvotes:hover {
@@ -51,7 +51,7 @@
     }
 </style>
 <br>
-<h1>NEPT Stock:</h1>
+<h1 id = "stocksymbolincaps"></h1>
 <script>
 /** Import */
 var fetch;
@@ -301,19 +301,38 @@ window['Stocks'] = Stocks; // Browser
 
 var stocks = new Stocks('4ZF0BBWTISCHS7T9');
 
+
 async function request () {
+  try {
   var result = await stocks.timeSeries({
-    symbol: 'NEPT',
+    symbol: '{{stocktickername}}',
     interval: 'daily',
     amount: 1
    });
   latesthigh = result[0].high;
   latestlow = result[0].low;
+  if (typeof latesthigh !== "int") {
+    console.log("This is sick.");
+    console.log(latesthigh);
+  } else {
+    window.location = "http://www.marketbeat.com";
+  }
   document.getElementById("latesthigh").innerHTML = "<span style = 'color: #4CAF50'>Today's High:</span> $" + latesthigh;
   document.getElementById("latestlow").innerHTML = "<span style = 'color: #ff4040'>Today's Low:</span> $" + latestlow;
+  }
+  catch(e) {
+    console.log("crap!");
+  }
+};
 
-}
 request();
+
+async function tickernameincaps() {
+  var oldstring = "{{stocktickername}}";
+  var result = oldstring.toUpperCase();
+  document.getElementById("stocksymbolincaps").innerHTML = result + ":";
+};
+tickernameincaps();
 </script>
 <div class = "wrapper">
 <h3 id = "latesthigh"></h3>
@@ -322,27 +341,27 @@ request();
   <div id="tv-medium-widget"></div>
   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script type="text/javascript">
-  new TradingView.MediumWidget(
-  {
-  "container_id": "tv-medium-widget",
-  "symbols": [
-    [
-      "Nept",
-      "nept"
-    ]
-  ],
-  "greyText": "Quotes by",
-  "gridLineColor": "#e9e9ea",
-  "fontColor": "#83888D",
-  "underLineColor": "#dbeffb",
-  "trendLineColor": "#4bafe9",
-  "margin" : "auto",
-  "width": "100%",
-  "min-width": "500px",
-  "locale": "en",
-  "chartOnly" : true
-}
-  );
+      new TradingView.MediumWidget(
+      {
+      "container_id": "tv-medium-widget",
+      "symbols": [
+        [
+          "{{stocktickername}}",
+          "{{stocktickername}}"
+        ]
+      ],
+      "greyText": "Quotes by",
+      "gridLineColor": "#e9e9ea",
+      "fontColor": "#83888D",
+      "underLineColor": "#dbeffb",
+      "trendLineColor": "#4bafe9",
+      "margin" : "auto",
+      "width": "100%",
+      "min-width": "500px",
+      "locale": "en",
+      "chartOnly" : true
+    }
+      );
   </script>
 </div>
 <br>
