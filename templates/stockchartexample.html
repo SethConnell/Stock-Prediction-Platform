@@ -1,3 +1,5 @@
+<html>
+<head>
 <!-- TradingView Widget BEGIN -->
 <style>
     html, body {
@@ -21,7 +23,7 @@
       width: 100%;
       text-align: center;
     }
-    #buttonwrapper {
+    .buttonwrapper {
       margin: auto;
       text-align: center;
     }
@@ -50,6 +52,17 @@
       color: #ffffff !important;
     }
 </style>
+<title>Stock Info</title>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body>
 <br>
 <h1 id = "stocksymbolincaps"></h1>
 <script>
@@ -365,9 +378,36 @@ tickernameincaps();
   </script>
 </div>
 <br>
-<div id = "buttonwrapper">
-  <button class = "predictvotes greentext bullish">Bullish</button>
-  <button class = "predictvotes redtext bearish">Bearish</button>
+
+<!-- Button trigger modal -->
+<div class="buttonwrapper">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Make A Prediction!
+</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Make Your Prediction</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<h1>How do you feel about this stock?</h1>
+		<br>
+        <div class = "buttonwrapper">
+			<button class="predictvotes bullish greentext">Bullish</button>
+			<button class="predictvotes bearish redtext">Bearish</button>
+		</div>
+		<br>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
+</body>
 <!-- TradingView Widget END -->
+</html>
